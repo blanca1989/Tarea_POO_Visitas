@@ -1,0 +1,26 @@
+from modelos.visitante import Visitante
+
+
+class VisitaServicio:
+    def __init__(self):
+        self._visitantes = []  # Encapsulamiento
+
+    def registrar(self, cedula, nombre, motivo):
+        # Validar duplicados
+        for v in self._visitantes:
+            if v.cedula == cedula:
+                return False
+
+        visitante = Visitante(cedula, nombre, motivo)
+        self._visitantes.append(visitante)
+        return True
+
+    def obtener_todos(self):
+        return self._visitantes
+
+    def eliminar(self, cedula):
+        for v in self._visitantes:
+            if v.cedula == cedula:
+                self._visitantes.remove(v)
+                return True
+        return False
